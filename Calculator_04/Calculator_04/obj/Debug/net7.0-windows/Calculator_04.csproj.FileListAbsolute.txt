@@ -1,0 +1,17 @@
+E:\Calculator_04\Calculator_04\bin\Debug\net7.0-windows\Calculator_04.exe
+E:\Calculator_04\Calculator_04\bin\Debug\net7.0-windows\Calculator_04.deps.json
+E:\Calculator_04\Calculator_04\bin\Debug\net7.0-windows\Calculator_04.runtimeconfig.json
+E:\Calculator_04\Calculator_04\bin\Debug\net7.0-windows\Calculator_04.dll
+E:\Calculator_04\Calculator_04\bin\Debug\net7.0-windows\Calculator_04.pdb
+E:\Calculator_04\Calculator_04\obj\Debug\net7.0-windows\Calculator_04.csproj.AssemblyReference.cache
+E:\Calculator_04\Calculator_04\obj\Debug\net7.0-windows\Calculator_04.Form1.resources
+E:\Calculator_04\Calculator_04\obj\Debug\net7.0-windows\Calculator_04.csproj.GenerateResource.cache
+E:\Calculator_04\Calculator_04\obj\Debug\net7.0-windows\Calculator_04.GeneratedMSBuildEditorConfig.editorconfig
+E:\Calculator_04\Calculator_04\obj\Debug\net7.0-windows\Calculator_04.AssemblyInfoInputs.cache
+E:\Calculator_04\Calculator_04\obj\Debug\net7.0-windows\Calculator_04.AssemblyInfo.cs
+E:\Calculator_04\Calculator_04\obj\Debug\net7.0-windows\Calculator_04.csproj.CoreCompileInputs.cache
+E:\Calculator_04\Calculator_04\obj\Debug\net7.0-windows\Calculator_04.dll
+E:\Calculator_04\Calculator_04\obj\Debug\net7.0-windows\refint\Calculator_04.dll
+E:\Calculator_04\Calculator_04\obj\Debug\net7.0-windows\Calculator_04.pdb
+E:\Calculator_04\Calculator_04\obj\Debug\net7.0-windows\Calculator_04.genruntimeconfig.cache
+E:\Calculator_04\Calculator_04\obj\Debug\net7.0-windows\ref\Calculator_04.dll
