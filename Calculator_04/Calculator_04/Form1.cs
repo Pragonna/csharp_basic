@@ -24,60 +24,64 @@ namespace Calculator_04
         private void Divide()
         {
             click++;
-            if (result == 0)
+            num.Add(decimal.Parse(textBox_main.Text));
+            if (result != 0)
             {
-                num.Add(decimal.Parse(textBox_main.Text));
-                result = num[0];
+                result/= num[num.Count - 1];
+                num.Add(result);
+                textBox_main.Text = result.ToString();
             }
             else
             {
-                num.Add(decimal.Parse(textBox_main.Text));
-                result /= num[num.Count - 1];
+                result = num[0];
                 textBox_main.Text = result.ToString();
             }
         }
         private void Multiplication()
         {
             click++;
-            if (result == 0)
+            num.Add(decimal.Parse(textBox_main.Text));
+            if (result != 0)
             {
-                num.Add(decimal.Parse(textBox_main.Text));
-                result = num[0];
+                result *= num[num.Count - 1];
+                num.Add(result);
+                textBox_main.Text = result.ToString();
             }
             else
             {
-                num.Add(decimal.Parse(textBox_main.Text));
-                result *= num[num.Count - 1];
+                result = num[0];
                 textBox_main.Text = result.ToString();
             }
         }
         private void Total()
         {
             click++;
-            if (result == 0)
+            num.Add(decimal.Parse(textBox_main.Text));
+            if (result != 0)
             {
-                num.Add(decimal.Parse(textBox_main.Text));
-                result = num[0];
+                result += num[num.Count - 1];
+                num.Add(result);
+                textBox_main.Text = result.ToString();
             }
             else
             {
-                num.Add(decimal.Parse(textBox_main.Text));
-                result += num[num.Count - 1];
+                result = num[0];
                 textBox_main.Text = result.ToString();
             }
         }
         private void Minus()
         {
             click++;
-            if (result == 0)
+            num.Add(decimal.Parse(textBox_main.Text));
+            if (result != 0)
             {
-                num.Add(decimal.Parse(textBox_main.Text));
-                result = num[0];
+                result -= num[num.Count - 1];
+                num.Add(result);
+                textBox_main.Text = result.ToString();
             }
             else
             {
-                num.Add(decimal.Parse(textBox_main.Text));
-                result -= num[num.Count - 1];
+                result = num[0];
                 textBox_main.Text = result.ToString();
             }
         }
@@ -177,6 +181,7 @@ namespace Calculator_04
         {
             textBox_main.Clear();
             result = 0;
+            num.Clear();
         }
 
         private void button_PostitiveAndNegative_Click(object sender, EventArgs e)
