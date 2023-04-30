@@ -173,7 +173,7 @@ namespace Calculator_04
 
         private void button_Dot_Click(object sender, EventArgs e)
         {
-            textBox_main.Text += ".";
+            textBox_main.Text += ",";
         }
         #endregion
 
@@ -200,12 +200,6 @@ namespace Calculator_04
 
         }
 
-        private void button_plus_Click(object sender, EventArgs e)
-        {
-            tempSymbol = symbol;
-            symbol = '+';
-            ProcessResult();
-        }
 
         private void button_Equal_Click(object sender, EventArgs e)
         {
@@ -270,6 +264,13 @@ namespace Calculator_04
                         break;
                 }
             }
+        }
+        
+        private void button_plus_Click(object sender, EventArgs e)
+        {
+            tempSymbol = symbol;
+            symbol = '+';
+            ProcessResult();
         }
 
         private void button_minus_Click(object sender, EventArgs e)
