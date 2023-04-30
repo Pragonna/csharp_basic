@@ -173,7 +173,14 @@ namespace Calculator_04
 
         private void button_Dot_Click(object sender, EventArgs e)
         {
-            textBox_main.Text += ",";
+            if (result != 0 && click > 0)
+            {
+                textBox_main.Clear();
+                textBox_main.Text += "0,";
+                click = 0;
+            }
+            else
+                textBox_main.Text += ",";
         }
         #endregion
 
