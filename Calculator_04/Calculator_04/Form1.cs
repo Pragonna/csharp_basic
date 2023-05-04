@@ -9,10 +9,15 @@ namespace Calculator_04
         int click = 0;
         char symbol = default;
         char tempSymbol = default;
+        delegate void IfDifferentOrThanZeroValue();
+        IfDifferentOrThanZeroValue ifDifferentOrThanZeroValue;
+
         public Form1()
         {
             InitializeComponent();
             textBox_main.Text = "0";
+            ifDifferentOrThanZeroValue = ZeroValue;
+            ifDifferentOrThanZeroValue += DifferentZero;
         }
 
 
@@ -24,6 +29,8 @@ namespace Calculator_04
         private void Divide()
         {
             click++;
+            if (click > 1)
+                return;
             num.Add(decimal.Parse(textBox_main.Text));
             if (result != 0)
             {
@@ -40,6 +47,8 @@ namespace Calculator_04
         private void Multiplication()
         {
             click++;
+            if (click > 1)
+                return;
             num.Add(decimal.Parse(textBox_main.Text));
             if (result != 0)
             {
@@ -56,6 +65,8 @@ namespace Calculator_04
         private void Total()
         {
             click++;
+            if (click > 1)
+                return;
             num.Add(decimal.Parse(textBox_main.Text));
             if (result != 0)
             {
@@ -72,6 +83,8 @@ namespace Calculator_04
         private void Minus()
         {
             click++;
+            if (click > 1)
+                return;
             num.Add(decimal.Parse(textBox_main.Text));
             if (result != 0)
             {
@@ -89,7 +102,13 @@ namespace Calculator_04
 
         #endregion
         #region If is or different Zero for number moving
-        private void IfTextBoxIsZeroValue()
+        //private void IfTextBoxIsZeroValue()
+        //{
+        //    ZeroValue();
+        //    DifferentZero();
+        //}
+
+        private void ZeroValue()
         {
             switch (textBox_main.Text)
             {
@@ -97,77 +116,78 @@ namespace Calculator_04
                     textBox_main.Clear();
                     break;
             }
-            IfResultDifferentZero();
         }
-        private void IfResultDifferentZero()
+
+        private void DifferentZero()
         {
-            if (result != 0 && click > 0)
+            if (result == 0 || click <= 0)
             {
-                textBox_main.Clear();
-                click = 0;
+                return;
             }
+            textBox_main.Clear();
+            click = 0;
         }
         #endregion
         #region Button Number
         private void button1_Click(object sender, EventArgs e)
         {
-            IfTextBoxIsZeroValue();
+            ifDifferentOrThanZeroValue.Invoke();
             textBox_main.Text += "1";
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            IfTextBoxIsZeroValue();
+            ifDifferentOrThanZeroValue.Invoke();
             textBox_main.Text += "2";
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            IfTextBoxIsZeroValue();
+            ifDifferentOrThanZeroValue.Invoke();
             textBox_main.Text += "3";
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            IfTextBoxIsZeroValue();
+            ifDifferentOrThanZeroValue.Invoke();
             textBox_main.Text += "4";
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            IfTextBoxIsZeroValue();
+            ifDifferentOrThanZeroValue.Invoke(); 
             textBox_main.Text += "5";
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            IfTextBoxIsZeroValue();
+            ifDifferentOrThanZeroValue.Invoke();
             textBox_main.Text += "6";
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            IfTextBoxIsZeroValue();
+            ifDifferentOrThanZeroValue.Invoke();
             textBox_main.Text += "7";
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            IfTextBoxIsZeroValue();
+            ifDifferentOrThanZeroValue.Invoke();
             textBox_main.Text += "8";
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            IfTextBoxIsZeroValue();
+            ifDifferentOrThanZeroValue.Invoke();
             textBox_main.Text += "9";
         }
 
         private void button0_Click(object sender, EventArgs e)
         {
-            IfTextBoxIsZeroValue();
+            ifDifferentOrThanZeroValue.Invoke();
             textBox_main.Text += "0";
         }
 
@@ -181,6 +201,7 @@ namespace Calculator_04
             }
             else
                 textBox_main.Text += ",";
+            
         }
         #endregion
 
@@ -207,6 +228,12 @@ namespace Calculator_04
 
         }
 
+        private void button_plus_Click(object sender, EventArgs e)
+        {
+            tempSymbol = symbol;
+            symbol = '+';
+            ProcessResult();
+        }
 
         private void button_Equal_Click(object sender, EventArgs e)
         {
@@ -271,13 +298,6 @@ namespace Calculator_04
                         break;
                 }
             }
-        }
-        
-        private void button_plus_Click(object sender, EventArgs e)
-        {
-            tempSymbol = symbol;
-            symbol = '+';
-            ProcessResult();
         }
 
         private void button_minus_Click(object sender, EventArgs e)
