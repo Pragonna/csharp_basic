@@ -11,7 +11,8 @@ namespace Calculator_04
         char tempSymbol = default;
         delegate void IfDifferentOrThanZeroValue();
         IfDifferentOrThanZeroValue ifDifferentOrThanZeroValue;
-
+        delegate void _Functions();
+        _Functions functions;
         public Form1()
         {
             InitializeComponent();
@@ -19,18 +20,22 @@ namespace Calculator_04
             ifDifferentOrThanZeroValue = ZeroValue;
             ifDifferentOrThanZeroValue += DifferentZero;
         }
-
-
         private void textBox_main_TextChanged(object sender, EventArgs e)
         {
 
         }
         #region Functions method
-        private void Divide()
+        private void Functions(_Functions method)
         {
             click++;
             if (click > 1)
                 return;
+            functions = method;
+            functions.Invoke();
+        }
+        private void Divide()
+        {
+          
             num.Add(decimal.Parse(textBox_main.Text));
             if (result != 0)
             {
@@ -39,16 +44,10 @@ namespace Calculator_04
                 textBox_main.Text = result.ToString();
             }
             else
-            {
-                result = num[0];
-                textBox_main.Text = result.ToString();
-            }
+                ElseFunctionsResult();
         }
         private void Multiplication()
         {
-            click++;
-            if (click > 1)
-                return;
             num.Add(decimal.Parse(textBox_main.Text));
             if (result != 0)
             {
@@ -57,16 +56,17 @@ namespace Calculator_04
                 textBox_main.Text = result.ToString();
             }
             else
-            {
-                result = num[0];
-                textBox_main.Text = result.ToString();
-            }
+                ElseFunctionsResult();
         }
+
+        private void ElseFunctionsResult()
+        {
+            result = num[0];
+            textBox_main.Text = result.ToString();
+        }
+
         private void Total()
         {
-            click++;
-            if (click > 1)
-                return;
             num.Add(decimal.Parse(textBox_main.Text));
             if (result != 0)
             {
@@ -75,16 +75,10 @@ namespace Calculator_04
                 textBox_main.Text = result.ToString();
             }
             else
-            {
-                result = num[0];
-                textBox_main.Text = result.ToString();
-            }
+                ElseFunctionsResult();
         }
         private void Minus()
         {
-            click++;
-            if (click > 1)
-                return;
             num.Add(decimal.Parse(textBox_main.Text));
             if (result != 0)
             {
@@ -93,21 +87,14 @@ namespace Calculator_04
                 textBox_main.Text = result.ToString();
             }
             else
-            {
-                result = num[0];
-                textBox_main.Text = result.ToString();
-            }
+                ElseFunctionsResult();
+
         }
 
 
         #endregion
         #region If is or different Zero for number moving
-        //private void IfTextBoxIsZeroValue()
-        //{
-        //    ZeroValue();
-        //    DifferentZero();
-        //}
-
+      
         private void ZeroValue()
         {
             switch (textBox_main.Text)
@@ -215,6 +202,7 @@ namespace Calculator_04
         private void button_PostitiveAndNegative_Click(object sender, EventArgs e)
         {
             SymbolFiltered();
+            symbol = default;
             var txtMain = decimal.Parse(textBox_main.Text);
             if (txtMain > 0)
             {
@@ -238,6 +226,7 @@ namespace Calculator_04
         private void button_Equal_Click(object sender, EventArgs e)
         {
             SymbolFiltered();
+            symbol = default;
         }
 
         private void SymbolFiltered()
@@ -245,19 +234,19 @@ namespace Calculator_04
             switch (symbol)
             {
                 case '+':
-                    Total();
+                    Functions(() => Total());
                     break;
                 case '-':
-                    Minus();
+                    Functions(() => Minus());
                     break;
                 case 'x':
-                    Multiplication();
+                    Functions(() => Multiplication());
                     break;
                 case '/':
-                    Divide();
+                    Functions(()=>Divide());
                     break;
             }
-            symbol = default;
+           
         }
 
         private void ProcessResult()
@@ -267,36 +256,22 @@ namespace Calculator_04
                 switch (tempSymbol)
                 {
                     case '+':
-                        Total();
+                        Functions(() => Total());
                         break;
                     case '-':
-                        Minus();
+                        Functions(() => Minus());
                         break;
                     case 'x':
-                        Multiplication();
+                        Functions(() => Multiplication());
                         break;
                     case '/':
-                        Divide();
+                        Functions(() => Divide());
                         break;
                 }
             }
             else
             {
-                switch (symbol)
-                {
-                    case '+':
-                        Total();
-                        break;
-                    case '-':
-                        Minus();
-                        break;
-                    case 'x':
-                        Multiplication();
-                        break;
-                    case '/':
-                        Divide();
-                        break;
-                }
+                SymbolFiltered();
             }
         }
 
@@ -324,9 +299,7 @@ namespace Calculator_04
 
         private void button_percent_Click(object sender, EventArgs e)
         {
-            //tempSymbol = symbol;
-            //symbol = '%';
-            //ProcessResult();
+           //
         }
     }
 }
