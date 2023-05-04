@@ -22,7 +22,11 @@ namespace Calculator_04
         }
         private void textBox_main_TextChanged(object sender, EventArgs e)
         {
-
+           if (textBox_main.Text.Length == 13)
+            {
+                textBox_main.Clear();
+                textBox_main.Text = @"Error // Limit Index ";
+            }
         }
         #region Functions method
         private void Functions(_Functions method)
