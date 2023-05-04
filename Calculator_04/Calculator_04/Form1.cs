@@ -93,7 +93,7 @@ namespace Calculator_04
 
 
         #endregion
-        #region If is or different Zero for number moving
+        #region If  different or is Zero for number move
       
         private void ZeroValue()
         {
