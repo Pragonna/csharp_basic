@@ -11,7 +11,7 @@ namespace CourseManagmentRepair
 {
     public partial class CourseManagment : Form
     {
-        const string Database = @" Data Source=PRAGONNA\SQLEXPRESS;Initial Catalog = CourseManagementDB; Integrated Security = True;Encrypt=False";
+        const string Database = @" Data Source=.\SQLEXPRESS;Initial Catalog = CourseManagementDB; Integrated Security = True;Encrypt=False";
         SqlConnection conn = new SqlConnection(Database);
         public CourseManagment()
         {
