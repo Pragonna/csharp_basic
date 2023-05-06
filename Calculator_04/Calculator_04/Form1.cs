@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace Calculator_04
 {
@@ -9,10 +10,8 @@ namespace Calculator_04
         int click = 0;
         char symbol = default;
         char tempSymbol = default;
-        delegate void IfDifferentOrThanZeroValue();
-        IfDifferentOrThanZeroValue ifDifferentOrThanZeroValue;
-        delegate void _Functions();
-        _Functions functions;
+        Action ifDifferentOrThanZeroValue;
+        Action functions;
         public Form1()
         {
             InitializeComponent();
@@ -22,14 +21,15 @@ namespace Calculator_04
         }
         private void textBox_main_TextChanged(object sender, EventArgs e)
         {
-           if (textBox_main.Text.Length == 13)
+            if (textBox_main.Text.Length == 13)
             {
                 textBox_main.Clear();
                 textBox_main.Text = @"Error // Limit Index ";
             }
+                
         }
         #region Functions method
-        private void Functions(_Functions method)
+        private void Functions(Action method)
         {
             click++;
             if (click > 1)
@@ -39,11 +39,10 @@ namespace Calculator_04
         }
         private void Divide()
         {
-          
             num.Add(decimal.Parse(textBox_main.Text));
             if (result != 0)
             {
-                result/= num[num.Count - 1];
+                result /= num[num.Count - 1];
                 num.Add(result);
                 textBox_main.Text = result.ToString();
             }
@@ -92,13 +91,12 @@ namespace Calculator_04
             }
             else
                 ElseFunctionsResult();
-
         }
 
 
         #endregion
         #region if the value is zero or different from zero
-      
+
         private void ZeroValue()
         {
             switch (textBox_main.Text)
@@ -148,7 +146,7 @@ namespace Calculator_04
 
         private void button5_Click(object sender, EventArgs e)
         {
-            ifDifferentOrThanZeroValue.Invoke(); 
+            ifDifferentOrThanZeroValue.Invoke();
             textBox_main.Text += "5";
         }
 
@@ -192,7 +190,7 @@ namespace Calculator_04
             }
             else
                 textBox_main.Text += ",";
-            
+
         }
         #endregion
 
@@ -207,6 +205,7 @@ namespace Calculator_04
 
         private void button_PostitiveAndNegative_Click(object sender, EventArgs e)
         {
+
             SymbolFiltered();
             symbol = default;
             var txtMain = decimal.Parse(textBox_main.Text);
@@ -249,10 +248,10 @@ namespace Calculator_04
                     Functions(() => Multiplication());
                     break;
                 case '/':
-                    Functions(()=>Divide());
+                    Functions(() => Divide());
                     break;
             }
-           
+
         }
 
         private void ProcessResult()
@@ -305,7 +304,8 @@ namespace Calculator_04
 
         private void button_percent_Click(object sender, EventArgs e)
         {
-           //
+            //
         }
+        
     }
 }
