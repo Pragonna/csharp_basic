@@ -55,7 +55,7 @@ namespace Calculator_Repair
                 else
                     CalculateMethod(_operator, num, 0);
             }
-            catch (ArgumentOutOfRangeException)
+            catch 
             {
 
                 throw new Exception("Incorrect character usage detected");
