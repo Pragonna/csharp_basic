@@ -19,7 +19,7 @@ namespace Calculator_Repair
         char _operator = default;
         char tempOperator=default;
         int operatorButtonClickCount = 0;
-        double[] num = new double[3];
+        double[] num = new double[2];
         
 
         #endregion
