@@ -12,7 +12,7 @@ namespace Calculator_Repair
         #region Fields
 
         int operatorButtonClickCount;
-        double[] num = new double[3];
+        double[] num = new double[2];
         char _operator;
         string txtBox;
         char tempOperator;
