@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -27,7 +27,7 @@ namespace Calculator_Repair
 
         #endregion
 
-        public ArithmaticOperations(string textBox, int click, char _operator, double[] num,char tempOperator)
+        public ArithmaticOperations(string textBox, int click, char _operator, double[] num, char tempOperator)
         {
             this.operatorButtonClickCount = click;
             this.txtBox = textBox;
@@ -41,95 +41,58 @@ namespace Calculator_Repair
         // This Method processing for result value
         internal void OperationForCalculationMethod()
         {
+            // if Button clicked twice
             operatorButtonClickCount++;
             if (operatorButtonClickCount > 1)
                 return;
 
-            // if Button clicked twice
+            // tempOperator to need for handle result before current operation 
             tempOperator = tempOperator == default ? _operator : tempOperator;
-            switch (tempOperator)
-            {
-                case '+':
-                    Total();
-                    break;
-                case '-':
-                    Subtract();
-                    break;
-                case '*':
-                    Multiplication();
-                    break;
-                case '/':
-                    Divide();
-                    break;
-                default:
-                    break;
-            }
-
-
-
-        }
-
-        // This Method calculate input value and send next method
-        protected void Subtract()
-        {
             num[0] = double.Parse(txtBox);
             if (num[1] == -1)
             {
                 num[1] = num[0];
                 num[0] = 1;
-                txtBox = num[1].ToString();
             }
             else
             {
-                num[1] -= num[0];
-                txtBox = num[1].ToString();
+                switch (tempOperator)
+                {
+                    case '+':
+                        Total();
+                        break;
+                    case '-':
+                        Subtract();
+                        break;
+                    case '*':
+                        Multiplication();
+                        break;
+                    case '/':
+                        Divide();
+                        break;
+                    default:
+                        break;
+                }
             }
+            txtBox = num[1].ToString();
+        }
+
+        // This Method calculate result value
+        protected void Subtract()
+        {
+            num[1] -= num[0];
         }
         protected void Total()
         {
-            num[0] = double.Parse(txtBox);
-            if (num[1] == -1)
-            {
-                num[1] = num[0];
-                num[0] = 1;
-                txtBox = num[1].ToString();
-            }
-            else
-            {
-                num[1] += num[0];
-                txtBox = num[1].ToString();
-            }
+            num[1] += num[0];
         }
-
         protected void Multiplication()
         {
-            num[0] = double.Parse(txtBox);
-            if (num[1] == -1)
-            {
-                num[1] = num[0];
-                num[0] = 1;
-                txtBox = num[1].ToString();
-            }
-            else
-            {
-                num[1] *= num[0];
-                txtBox = num[1].ToString();
-            }
+            num[1] *= num[0];
         }
         protected void Divide()
         {
-            num[0] = double.Parse(txtBox);
-            if (num[1] == -1)
-            {
-                num[1] = num[0];
-                num[0] = 1;
-                txtBox = num[1].ToString();
-            }
-            else
-            {
-                num[1] /= num[0];
-                txtBox = num[1].ToString();
-            }
+            num[1] /= num[0];
         }
         #endregion
     }
