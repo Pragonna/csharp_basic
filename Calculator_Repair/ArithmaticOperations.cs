@@ -52,7 +52,6 @@ namespace Calculator_Repair
             if (num[1] == -1)
             {
                 num[1] = num[0];
-                num[0] = 1;
             }
             else
             {
