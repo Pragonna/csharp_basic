@@ -138,7 +138,7 @@ namespace Calculator_Repair
                 default:
                     break;
             }
-            Process();
+            ProcessWhenOperatorsButtonIsClicked();
         }
 
         #endregion
@@ -158,17 +158,15 @@ namespace Calculator_Repair
 
         private void buttonPositiveAndNegative_Click(object sender, EventArgs e)
         {
-            num[0] = double.Parse(txtDisplay.Text);
-            if (num[0] > 0)
+            var tempNum = double.Parse(txtDisplay.Text);
+            if (tempNum > 0)
             {
-                var temp = "-" + num[0];
+                var temp = "-" + tempNum;
                 txtDisplay.Text = temp;
-                num[1] = double.Parse(temp);
             }
-            else if (num[0] < 0)
+            else if (tempNum < 0)
             {
-                txtDisplay.Text = num[0].ToString().Remove(0, 1);
-                num[1] = double.Parse(txtDisplay.Text);
+                txtDisplay.Text = tempNum.ToString().Remove(0, 1);
             }
             else
                 return;
@@ -185,15 +183,18 @@ namespace Calculator_Repair
 
         #region Process Method
 
-        public void Process()
+        public void ProcessWhenOperatorsButtonIsClicked()
         {
+            // if Button clicked twice
+            operatorButtonClickCount++;
+            if (operatorButtonClickCount > 1)
+                return;
 
-            ArithmaticOperations mathicOperations = new(txtDisplay.Text, operatorButtonClickCount, _operator, num, tempOperator);
+            ArithmaticOperations mathicOperations = new(txtDisplay.Text, _operator, num, tempOperator);
             mathicOperations.OperationForCalculationMethod();
             // After Operation the value will be back main variable
             txtDisplay.Text = mathicOperations.TextBox;
             _operator = mathicOperations.Operator;
-            operatorButtonClickCount = mathicOperations.OperatorButtonClickCount;
             num = mathicOperations.Num;
         }
         #endregion
