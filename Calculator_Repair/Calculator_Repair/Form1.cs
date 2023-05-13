@@ -86,7 +86,7 @@ namespace Calculator_Repair
                     break;
 
                 case "buttonDot":
-                    txtDisplay.Text += txtDisplay.Text == "" ? "0," : ",";
+                    txtDisplay.Text += txtDisplay.Text == "" ? "0," :(txtDisplay.Text.Substring(txtDisplay.Text.Length - 1, 1) == ",")?"": ",";
                     break;
                 default:
                     break;
