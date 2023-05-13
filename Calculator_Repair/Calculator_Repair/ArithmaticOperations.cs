@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -11,7 +11,6 @@ namespace Calculator_Repair
     {
         #region Fields
 
-        int operatorButtonClickCount;
         double[] num = new double[2];
         char _operator;
         string txtBox;
@@ -20,16 +19,14 @@ namespace Calculator_Repair
         #endregion
 
         #region Properties
-        public int OperatorButtonClickCount { get => operatorButtonClickCount; }
         public double[] Num { get => num; }
         public char Operator { get => _operator; }
         public string TextBox { get => txtBox; }
 
         #endregion
 
-        public ArithmaticOperations(string textBox, int click, char _operator, double[] num, char tempOperator)
+        public ArithmaticOperations(string textBox,  char _operator, double[] num, char tempOperator)
         {
-            this.operatorButtonClickCount = click;
             this.txtBox = textBox;
             this._operator = _operator;
             this.num = num;
@@ -41,11 +38,6 @@ namespace Calculator_Repair
         // This Method processing for result value
         internal void OperationForCalculationMethod()
         {
-            // if Button clicked twice
-            operatorButtonClickCount++;
-            if (operatorButtonClickCount > 1)
-                return;
-
             // tempOperator to need for handle result before current operation 
             tempOperator = tempOperator == default ? _operator : tempOperator;
             num[0] = double.Parse(txtBox);
@@ -92,6 +84,8 @@ namespace Calculator_Repair
         protected void Divide()
         {
             num[1] /= num[0];
+            num[1] = num[1]==double.PositiveInfinity ? 0 : num[1];
+            num[1] = num[1]==double.NegativeInfinity?0 : num[1];
         }
         #endregion
     }
